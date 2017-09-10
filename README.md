@@ -1,4 +1,5 @@
 # VirtualMuseum
+## Configuring project
 1. Set src project dir as a source root.
 2. Add lwjgl jar's:
 	- go to File -> Project Structure -> Modules -> Dependencies
