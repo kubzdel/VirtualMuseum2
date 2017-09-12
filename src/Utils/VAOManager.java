@@ -40,15 +40,9 @@ public class VAOManager implements IApplicationEvents {
 
     public void loadToVAO(Model model)
     {
-
         model.setVaoID(createVAO());
-        model.setData(new ModelData(model.getData().getVertices().length / 3));
-
         putDataToVBO(0, model.getData().getVertices());
         destroyVAO();
-
-
-
     }
 
     private int createVAO()
@@ -106,5 +100,7 @@ public class VAOManager implements IApplicationEvents {
         {
             GL15.glDeleteBuffers(vbo);
         }
+
+        System.out.println("VAOs and VBOs cleaned up succesfully");
     }
 }

@@ -10,8 +10,8 @@ import java.io.IOException;
 public class Model {
 
 
-    int vaoID;
-    int vertexCount;
+    private int vaoID;
+    private int vertexCount;
 
     ModelData data;
 
@@ -24,12 +24,27 @@ public class Model {
         this.data = data;
     }
 
+    public int getVertexCount() {
+        if(data == null)
+            return 0;
+        return data.vertexCount;
+    }
+
     public Model(String filename)
             throws IOException
     {
         File file = new File(filename);
         if(!file.exists())
             throw new IOException(String.format("Plik %s nie istnieje", filename));
+
+    }
+
+    public Model(float [] vertices)
+    {
+        data = new ModelData(vertices.length / 3);
+
+        data.vertices = vertices;
+        load();
 
     }
 
@@ -61,8 +76,4 @@ public class Model {
         this.vaoID = vaoID;
     }
 
-    public int getVartexCount()
-    {
-        return vertexCount;
-    }
 }
