@@ -1,5 +1,6 @@
 package Main;
 
+import Utils.ApplicationEventsManager;
 import Utils.DisplayManager;
 import org.lwjgl.opengl.Display;
 
@@ -25,6 +26,8 @@ public class Main {
         Utils.DisplayManager displayManager = new DisplayManager();
 
 
+        ApplicationEventsManager.getInstance().onApplicationStarted();
+
         if (DEBUG) {
             SystemInfo();
         }
@@ -34,6 +37,8 @@ public class Main {
         }
 
 
+
+        ApplicationEventsManager.getInstance().onApplicationEnded();
         displayManager.destroy();
 
     }
