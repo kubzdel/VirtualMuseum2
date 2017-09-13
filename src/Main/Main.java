@@ -7,6 +7,7 @@ import Utils.Constants;
 import Utils.DisplayManager;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import shaders.StaticShader;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -38,6 +39,7 @@ public class Main {
 
         Model model = new Model(vertices);
         renderer.addModelsToRender(model);
+        StaticShader shader = new StaticShader();
 
 
         if (DEBUG) {
@@ -46,13 +48,16 @@ public class Main {
 
         while (!Display.isCloseRequested()) {
             prepare();
+            shader.start();
             renderer.renderModels();
+            shader.stop();
             displayManager.update();
         }
 
 
 
         ApplicationEventsManager.getInstance().onApplicationEnded();
+        shader.cleanUp();
         displayManager.destroy();
 
     }
